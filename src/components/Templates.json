@@ -1,0 +1,2233 @@
+{
+  "templates": [
+    {
+      "name": "Base",
+      "thumbnail": "base.png",
+      "description": "The most basic template with the bare minimum. Let your imagination do the rest.",
+      "settings": {
+        "name": "Procedural texture",
+        "position": {
+          "x": 241.36730978538804,
+          "y": 5.172156638258307
+        },
+        "lastSaved": 0,
+        "zoom": 0.6934788561762073,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 218.30736600283046,
+              "y": -268.7460654124064
+            },
+            "properties": {
+              "eulerRotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "resolution": 128,
+              "time": 0,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 0,
+              "large": false,
+              "fog": 0.5,
+              "playing": false
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 241.37944651040755,
+              "y": 181.25393458759362
+            },
+            "properties": {
+              "filename": "VoronoiNoise",
+              "resolution": {
+                "x": 1024,
+                "y": 1024,
+                "z": 1
+              },
+              "layout": "auto"
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "voronoi",
+            "type": "VoronoiNoise",
+            "position": {
+              "x": -440.2809887267486,
+              "y": -70.23418764882386
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.2
+              ],
+              "featureWeight1": 1,
+              "featureWeight2": 0,
+              "featureWeight3": 0,
+              "featureWeight4": 0,
+              "distanceType": 0,
+              "seamless": true,
+              "seed": 1234
+            },
+            "evaluated": true,
+            "selected": false
+          }
+        ],
+        "edges": [
+          {
+            "from": "voronoi/output",
+            "to": "output/input",
+            "fromFormat": 1
+          },
+          {
+            "from": "voronoi/output",
+            "fromFormat": 1,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rock solid",
+      "description": "A general purpose tilable rock normal map texture. Rock 'n' roll!",
+      "thumbnail": "rocks.png",
+      "settings": {
+        "name": "Rocks",
+        "position": {
+          "x": -134.51620806857204,
+          "y": 369.1160519741658
+        },
+        "lastSaved": "Thu Aug 21 2025 17:40:03 GMT+0200 (Central European Summer Time)",
+        "zoom": 0.5089268024524933,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 1476.0306169033793,
+              "y": -868.1577786613713
+            },
+            "properties": {
+              "eulerRotation": [
+                0.48,
+                0.31999999999999984,
+                0,
+                0
+              ],
+              "resolution": 256,
+              "time": 0,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 0,
+              "large": true,
+              "fog": 0.5,
+              "playing": false
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 1385.7992254064918,
+              "y": -317.9207925058839
+            },
+            "properties": {
+              "filename": "rocks_normal",
+              "resolution": {
+                "x": 1024,
+                "y": 1024,
+                "z": 1
+              },
+              "layout": "auto"
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "voronoi",
+            "type": "VoronoiNoise",
+            "position": {
+              "x": -1367.2180951259502,
+              "y": 55.453832451145615
+            },
+            "properties": {
+              "size": [
+                0.15,
+                0.15,
+                0.15
+              ],
+              "featureWeight1": 0.42,
+              "featureWeight2": 0.34,
+              "featureWeight3": -0.17,
+              "featureWeight4": -0.11,
+              "distanceType": 1,
+              "seamless": true,
+              "seed": 6104,
+              "min": 0,
+              "max": 1
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "0dcbbedc-7f8a-438b-98fc-73ba0624b529",
+            "type": "Normal",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 541.0965488128047,
+              "y": -233.55625641528854
+            },
+            "properties": {
+              "scale": 1,
+              "remap": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "64e4a1cc-b665-418b-b2b5-6ad2899b3b6c",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -703.1796431898593,
+              "y": -608.4787599706593
+            },
+            "properties": {
+              "size": [
+                0.18,
+                0.18,
+                0.18
+              ],
+              "octaves": 6,
+              "lacunarity": 2.41,
+              "seamless": true,
+              "seed": 99452,
+              "min": 0,
+              "max": 1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "64ceb464-59af-431b-a44b-11656946ad65",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -287.47661408481866,
+              "y": -387.785340873025
+            },
+            "properties": {
+              "operation": 2,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "8d0c3b87-04d0-4c21-b75c-e35836e43372",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 193.48615815691767,
+              "y": -215.06363975763136
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "e60a6d45-2cb2-421a-8ec0-81578d5d84ab",
+            "type": "Gradient",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -735.3592474794752,
+              "y": -290.5874847059981
+            },
+            "properties": {
+              "stops": [
+                {
+                  "location": 0.129,
+                  "color": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.54,
+                  "color": [
+                    0.5411764705882353,
+                    0.5411764705882353,
+                    0.5411764705882353,
+                    1
+                  ]
+                }
+              ]
+            },
+            "evaluated": true
+          },
+          {
+            "id": "569387c7-70a0-4c29-ab4e-b144ff343582",
+            "type": "Distort",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 933.9569149056514,
+              "y": -444.34748650977735
+            },
+            "properties": {
+              "input": 0.5,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "1f276da5-c754-42b0-94f0-19de9cca4428",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 222.26565576046525,
+              "y": -836.7080783937901
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "7553cc08-471b-436a-9cbe-897066bc97af",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 172.30810586304787,
+              "y": -575.4063076166148
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.2
+              ],
+              "octaves": 7,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 61548,
+              "min": -0.07,
+              "max": 0.07
+            },
+            "evaluated": true
+          },
+          {
+            "id": "fd6d75f8-db8f-46db-b593-80af8c0287d8",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 547.9179898912012,
+              "y": -716.0864902696001
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "1d498295-6043-47f4-8aee-51ffc186fd37",
+            "type": "Blur",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -283.32817905461104,
+              "y": 144.95737279153852
+            },
+            "properties": {
+              "blurType": 0,
+              "scale": 0.1,
+              "sigma": 1,
+              "samples": 16
+            },
+            "evaluated": true
+          },
+          {
+            "id": "18485b62-3f52-4128-9157-d70405d5adae",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -737.0059875169778,
+              "y": 35.47650030298619
+            },
+            "properties": {
+              "size": [
+                0.13,
+                0.13,
+                0.13
+              ],
+              "octaves": 7,
+              "lacunarity": 2.25,
+              "seamless": true,
+              "seed": 17997,
+              "min": 0.08,
+              "max": -0.06
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "64e4a1cc-b665-418b-b2b5-6ad2899b3b6c/output",
+            "fromFormat": 1,
+            "to": "64ceb464-59af-431b-a44b-11656946ad65/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "64ceb464-59af-431b-a44b-11656946ad65/output",
+            "fromFormat": 1,
+            "to": "8d0c3b87-04d0-4c21-b75c-e35836e43372/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "voronoi/output",
+            "fromFormat": 1,
+            "to": "e60a6d45-2cb2-421a-8ec0-81578d5d84ab/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "8d0c3b87-04d0-4c21-b75c-e35836e43372/output",
+            "fromFormat": 1,
+            "to": "0dcbbedc-7f8a-438b-98fc-73ba0624b529/bump",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "0dcbbedc-7f8a-438b-98fc-73ba0624b529/output",
+            "fromFormat": 3,
+            "to": "569387c7-70a0-4c29-ab4e-b144ff343582/input",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "1f276da5-c754-42b0-94f0-19de9cca4428/uvw",
+            "fromFormat": 3,
+            "to": "fd6d75f8-db8f-46db-b593-80af8c0287d8/inputA",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "voronoi/output",
+            "fromFormat": 1,
+            "to": "1d498295-6043-47f4-8aee-51ffc186fd37/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "1d498295-6043-47f4-8aee-51ffc186fd37/output",
+            "fromFormat": 1,
+            "to": "8d0c3b87-04d0-4c21-b75c-e35836e43372/inputB",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "569387c7-70a0-4c29-ab4e-b144ff343582/output",
+            "fromFormat": 3,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "569387c7-70a0-4c29-ab4e-b144ff343582/output",
+            "fromFormat": 3,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "e60a6d45-2cb2-421a-8ec0-81578d5d84ab/output",
+            "fromFormat": 4,
+            "to": "64ceb464-59af-431b-a44b-11656946ad65/inputB",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "7553cc08-471b-436a-9cbe-897066bc97af/output",
+            "fromFormat": 1,
+            "to": "fd6d75f8-db8f-46db-b593-80af8c0287d8/inputB",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "18485b62-3f52-4128-9157-d70405d5adae/output",
+            "fromFormat": 1,
+            "to": "1d498295-6043-47f4-8aee-51ffc186fd37/scale",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "fd6d75f8-db8f-46db-b593-80af8c0287d8/output",
+            "fromFormat": 3,
+            "to": "569387c7-70a0-4c29-ab4e-b144ff343582/uvw",
+            "toFormat": 3,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rain ripples",
+      "description": "A procedural animated & loopable texture that simulates rain ripples on a surface.",
+      "thumbnail": "rain_ripples.png",
+      "settings": {
+        "name": "Rain ripples",
+        "position": {
+          "x": 562.6792605809856,
+          "y": 319.47775742306817
+        },
+        "lastSaved": "Thu Aug 21 2025 17:17:00 GMT+0200 (Central European Summer Time)",
+        "zoom": 0.6384931354894522,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 310.8406000870473,
+              "y": -585.557076113598
+            },
+            "properties": {
+              "eulerRotation": [
+                -1.579999999999997,
+                0.645,
+                0,
+                0
+              ],
+              "resolution": 128,
+              "time": 0.2563,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 2,
+              "large": true,
+              "fog": 0,
+              "playing": true
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 212.9965016548752,
+              "y": -9.771867655856143
+            },
+            "properties": {
+              "filename": "rain_ripples",
+              "resolution": {
+                "x": 256,
+                "y": 256,
+                "z": 256
+              },
+              "layout": "auto"
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "c808ccaa-5f58-40a9-94a6-2abcbb2cdcef",
+            "type": "Sphere",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1513.8285734624815,
+              "y": -147.07761631171817
+            },
+            "properties": {
+              "radius": 0.65,
+              "feather": 0.48
+            },
+            "evaluated": true
+          },
+          {
+            "id": "0e845c72-4b09-48ad-aff0-dc27f6a527de",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1714.434082130596,
+              "y": -459.46547944145755
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "75ae577e-fcaf-4aff-a5d8-9199955321f1",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -693.513359406383,
+              "y": -279.95874395475363
+            },
+            "properties": {
+              "operation": 2,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "06447637-ac9e-40dc-abde-fed313dcc969",
+            "type": "Smoothstep",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1065.015297385135,
+              "y": -471.7382058540686
+            },
+            "properties": {
+              "edge1": 0.36,
+              "edge2": 1.41,
+              "input": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "9eabe1ed-6939-4e4a-9e7a-164eba3bb238",
+            "type": "Gradient",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1129.4213232516004,
+              "y": -140.99572416099198
+            },
+            "properties": {
+              "stops": [
+                {
+                  "location": 0,
+                  "color": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.703,
+                  "color": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.471,
+                  "color": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.204,
+                  "color": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "location": 1,
+                  "color": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              ]
+            },
+            "evaluated": true
+          },
+          {
+            "id": "b371dbc0-17f5-4cbb-ab73-b813e00c12d5",
+            "type": "Scatterer",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -269.32718886746244,
+              "y": -318.0340271623667
+            },
+            "properties": {
+              "size": [
+                0.5,
+                0.5,
+                0.5,
+                0
+              ],
+              "positionJitter": [
+                1,
+                1,
+                1,
+                0
+              ],
+              "sizeJitter": [
+                0.5,
+                0.5,
+                0,
+                0
+              ],
+              "rotationJitter": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "amount": 23,
+              "value": 1,
+              "seed": 1234
+            },
+            "evaluated": true
+          },
+          {
+            "id": "100c5088-2d6e-4e65-98a9-86122254bb1d",
+            "type": "OneMinus",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1396.7490298098312,
+              "y": -457.76041798716517
+            },
+            "properties": {
+              "input": 0.5
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "c808ccaa-5f58-40a9-94a6-2abcbb2cdcef/output",
+            "fromFormat": 1,
+            "to": "9eabe1ed-6939-4e4a-9e7a-164eba3bb238/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "b371dbc0-17f5-4cbb-ab73-b813e00c12d5/output",
+            "fromFormat": 4,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "0e845c72-4b09-48ad-aff0-dc27f6a527de/w",
+            "fromFormat": 1,
+            "to": "100c5088-2d6e-4e65-98a9-86122254bb1d/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "100c5088-2d6e-4e65-98a9-86122254bb1d/output",
+            "fromFormat": 1,
+            "to": "06447637-ac9e-40dc-abde-fed313dcc969/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "75ae577e-fcaf-4aff-a5d8-9199955321f1/output",
+            "fromFormat": 1,
+            "to": "b371dbc0-17f5-4cbb-ab73-b813e00c12d5/mask",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "b371dbc0-17f5-4cbb-ab73-b813e00c12d5/output",
+            "fromFormat": 4,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "9eabe1ed-6939-4e4a-9e7a-164eba3bb238/output",
+            "fromFormat": 4,
+            "to": "75ae577e-fcaf-4aff-a5d8-9199955321f1/inputB",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "06447637-ac9e-40dc-abde-fed313dcc969/output",
+            "fromFormat": 1,
+            "to": "75ae577e-fcaf-4aff-a5d8-9199955321f1/inputA",
+            "toFormat": 1,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Caustics",
+      "thumbnail": "caustics.png",
+      "description": "These looping animated caustics patterns are perfect for simulating water light refractions.",
+      "settings": {
+        "name": "Caustics",
+        "position": {
+          "x": 336.89046643006355,
+          "y": 50.682776309538205
+        },
+        "lastSaved": 0,
+        "zoom": 0.7422074665310702,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 508.994554964708,
+              "y": -228.81377158788905
+            },
+            "properties": {
+              "eulerRotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "resolution": 128,
+              "time": 0.757,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 2,
+              "large": false,
+              "fog": 0.5,
+              "playing": true
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 533.6433265466804,
+              "y": 247.99637010593813
+            },
+            "properties": {
+              "filename": "Caustics",
+              "resolution": {
+                "x": 256,
+                "y": 256,
+                "z": 256
+              },
+              "layout": "auto"
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "value",
+            "type": "VoronoiNoise",
+            "position": {
+              "x": -664.3077107961203,
+              "y": 198.92958340274703
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.2
+              ],
+              "featureWeight1": 1.09,
+              "featureWeight2": -0.22,
+              "featureWeight3": -0.06,
+              "featureWeight4": 0.07,
+              "distanceType": 1,
+              "seamless": true,
+              "seed": 96427,
+              "min": 0,
+              "max": 1
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "gradient",
+            "type": "Gradient",
+            "position": {
+              "x": 102.64075281545776,
+              "y": -6.464529616451756
+            },
+            "properties": {
+              "stops": [
+                {
+                  "location": 0,
+                  "color": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "location": 1,
+                  "color": [
+                    0.996078431372549,
+                    1,
+                    0.7607843137254902,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.574,
+                  "color": [
+                    0.30196078431372547,
+                    0.6,
+                    0.7019607843137254,
+                    1
+                  ]
+                }
+              ]
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "419d19ce-10a2-46d1-b541-5a3ece125b9e",
+            "type": "Distort",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -286.2553439751335,
+              "y": -15.215977333185112
+            },
+            "properties": {
+              "input": 0.5,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "b34292c1-57b8-4e66-98e7-e5e4f76bb968",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -966.6093636593165,
+              "y": -449.24736871064454
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "84dc9dc3-88dd-4b5b-acf0-0862e81ab88b",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1016.5187231371445,
+              "y": -198.829671066535
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.14
+              ],
+              "octaves": 1,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 1234,
+              "min": -0.1,
+              "max": 0.1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "2696d19a-aec1-40d8-bb00-41dfe7c008cc",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -618.7771143328627,
+              "y": -267.00179563902464
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "gradient/output",
+            "to": "viewer/input",
+            "fromFormat": 4,
+            "toFormat": 4
+          },
+          {
+            "from": "gradient/output",
+            "fromFormat": 4,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "value/output",
+            "fromFormat": 1,
+            "to": "419d19ce-10a2-46d1-b541-5a3ece125b9e/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "419d19ce-10a2-46d1-b541-5a3ece125b9e/output",
+            "fromFormat": 1,
+            "to": "gradient/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "b34292c1-57b8-4e66-98e7-e5e4f76bb968/uvw",
+            "fromFormat": 3,
+            "to": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/inputA",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/output",
+            "fromFormat": 3,
+            "to": "419d19ce-10a2-46d1-b541-5a3ece125b9e/uvw",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "84dc9dc3-88dd-4b5b-acf0-0862e81ab88b/output",
+            "fromFormat": 1,
+            "to": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/inputB",
+            "toFormat": 1,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "8bit waves",
+      "thumbnail": "8bit_waves.png",
+      "description": "A tileable 8-bit style wave patterns, ideal for retro water surfaces and pixel-art aesthetics.",
+      "settings": {
+        "name": "8bit waves",
+        "position": {
+          "x": -113.72005373908888,
+          "y": 194.27113072712393
+        },
+        "lastSaved": 0,
+        "zoom": 0.6298856314010703,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 1295.3886878205185,
+              "y": -523.3900737744048
+            },
+            "properties": {
+              "eulerRotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "resolution": 32,
+              "time": 0.4188,
+              "raymarchingSamples": 48,
+              "bilinearSampling": false,
+              "mode": 2,
+              "large": false,
+              "fog": 0.5,
+              "playing": true
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 1326.817462599248,
+              "y": -34.39140324840349
+            },
+            "properties": {
+              "filename": "RetroWaves",
+              "resolution": {
+                "x": 32,
+                "y": 32,
+                "z": 16
+              },
+              "layout": "auto"
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "value",
+            "type": "VoronoiNoise",
+            "position": {
+              "x": -649.132324733947,
+              "y": 141.90565891916646
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.07
+              ],
+              "featureWeight1": 1.09,
+              "featureWeight2": -0.22,
+              "featureWeight3": -0.06,
+              "featureWeight4": 0.07,
+              "distanceType": 1,
+              "seamless": true,
+              "seed": 55159,
+              "min": 0,
+              "max": 1
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "gradient",
+            "type": "Gradient",
+            "position": {
+              "x": 549.4045470168084,
+              "y": -278.11519582619445
+            },
+            "properties": {
+              "stops": [
+                {
+                  "location": 0.051,
+                  "color": [
+                    0,
+                    0.23921568627450981,
+                    0.6196078431372549,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.718,
+                  "color": [
+                    1,
+                    1,
+                    0.8980392156862745,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.637,
+                  "color": [
+                    0.2,
+                    0.8,
+                    1,
+                    1
+                  ]
+                }
+              ]
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "419d19ce-10a2-46d1-b541-5a3ece125b9e",
+            "type": "Distort",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -278.720166963381,
+              "y": -66.07842216251483
+            },
+            "properties": {
+              "input": 0.5,
+              "bilinearSampling": false
+            },
+            "evaluated": true
+          },
+          {
+            "id": "b34292c1-57b8-4e66-98e7-e5e4f76bb968",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -930.7802109777288,
+              "y": -492.0258204914497
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "84dc9dc3-88dd-4b5b-acf0-0862e81ab88b",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -971.4103799631697,
+              "y": -246.84446993788035
+            },
+            "properties": {
+              "size": [
+                0.2,
+                0.2,
+                0.09
+              ],
+              "octaves": 1,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 21980,
+              "min": 0,
+              "max": 0.22
+            },
+            "evaluated": true
+          },
+          {
+            "id": "2696d19a-aec1-40d8-bb00-41dfe7c008cc",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -601.8106120978315,
+              "y": -301.6962543713055
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "20f7502d-d299-44e9-a389-f019609041fd",
+            "type": "Quantize",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 946.3974516906472,
+              "y": -247.5792669226462
+            },
+            "properties": {
+              "amount": 8
+            },
+            "evaluated": true
+          },
+          {
+            "id": "52df5a96-d5b4-4a68-a0a9-1e218d1f281d",
+            "type": "Transform",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": 111.52699584773202,
+              "y": -287.6986126384139
+            },
+            "properties": {
+              "position": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "scale": [
+                1,
+                1,
+                1,
+                0
+              ],
+              "input": 0,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "9adb77d3-ef47-4630-948b-99dddc449541",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -594.5528960832506,
+              "y": -608.6497722200464
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "4f20d095-c49f-4c0d-87bc-8d34f16aa4c8",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -263.3912372722931,
+              "y": -597.5767629172469
+            },
+            "properties": {
+              "operation": 2,
+              "a": 0.5,
+              "b": -4
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "value/output",
+            "fromFormat": 1,
+            "to": "419d19ce-10a2-46d1-b541-5a3ece125b9e/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "b34292c1-57b8-4e66-98e7-e5e4f76bb968/uvw",
+            "fromFormat": 3,
+            "to": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/inputA",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/output",
+            "fromFormat": 3,
+            "to": "419d19ce-10a2-46d1-b541-5a3ece125b9e/uvw",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "gradient/output",
+            "fromFormat": 4,
+            "to": "20f7502d-d299-44e9-a389-f019609041fd/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "20f7502d-d299-44e9-a389-f019609041fd/output",
+            "fromFormat": 4,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "20f7502d-d299-44e9-a389-f019609041fd/output",
+            "fromFormat": 4,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "419d19ce-10a2-46d1-b541-5a3ece125b9e/output",
+            "fromFormat": 1,
+            "to": "52df5a96-d5b4-4a68-a0a9-1e218d1f281d/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "52df5a96-d5b4-4a68-a0a9-1e218d1f281d/output",
+            "fromFormat": 1,
+            "to": "gradient/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "9adb77d3-ef47-4630-948b-99dddc449541/w",
+            "fromFormat": 1,
+            "to": "4f20d095-c49f-4c0d-87bc-8d34f16aa4c8/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "4f20d095-c49f-4c0d-87bc-8d34f16aa4c8/output",
+            "fromFormat": 1,
+            "to": "52df5a96-d5b4-4a68-a0a9-1e218d1f281d/position",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "84dc9dc3-88dd-4b5b-acf0-0862e81ab88b/output",
+            "fromFormat": 1,
+            "to": "2696d19a-aec1-40d8-bb00-41dfe7c008cc/inputB",
+            "toFormat": 1,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bubbles",
+      "thumbnail": "bubbles.png",
+      "description": "Some nice bubbles. Nothing fancy, but cool bubbles nonetheless. Is it worth clicking, not sure, tho..",
+      "settings": {
+        "name": "Bubbles",
+        "position": {
+          "x": -113.53458915310861,
+          "y": -47.040461536515814
+        },
+        "lastSaved": 0,
+        "zoom": 0.7487405246377999,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 526.5098732365103,
+              "y": -224.7717750636268
+            },
+            "properties": {
+              "eulerRotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "resolution": 128,
+              "time": 0.6638,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 2,
+              "large": false,
+              "fog": 0.5,
+              "playing": true
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 560.589970041761,
+              "y": 237.2177127079057
+            },
+            "properties": {
+              "filename": "Bubbles",
+              "resolution": {
+                "x": 1024,
+                "y": 1024,
+                "z": 1
+              },
+              "layout": "auto"
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "value",
+            "type": "VoronoiNoise",
+            "position": {
+              "x": -406.9328490830019,
+              "y": 108.7027365898003
+            },
+            "properties": {
+              "size": [
+                0.3,
+                0.3,
+                0.5
+              ],
+              "featureWeight1": 1,
+              "featureWeight2": 0,
+              "featureWeight3": 0,
+              "featureWeight4": 0,
+              "distanceType": 1,
+              "seamless": true,
+              "seed": 46409
+            },
+            "selected": false,
+            "evaluated": true
+          },
+          {
+            "id": "gradient",
+            "type": "Gradient",
+            "position": {
+              "x": 93.20942759217944,
+              "y": 85.1540582668236
+            },
+            "properties": {
+              "stops": [
+                {
+                  "location": 0.326,
+                  "color": [
+                    0.9411764705882353,
+                    1,
+                    0.996078431372549,
+                    1
+                  ]
+                },
+                {
+                  "location": 0,
+                  "color": [
+                    0.023529411764705882,
+                    0.12156862745098039,
+                    0.5176470588235295,
+                    1
+                  ]
+                },
+                {
+                  "location": 0.304,
+                  "color": [
+                    0.0196078431372549,
+                    0.6941176470588235,
+                    0.9215686274509803,
+                    1
+                  ]
+                }
+              ]
+            },
+            "selected": false,
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "value/output",
+            "to": "gradient/input",
+            "fromFormat": 1,
+            "toFormat": 1
+          },
+          {
+            "from": "gradient/output",
+            "to": "viewer/input",
+            "fromFormat": 4,
+            "toFormat": 4
+          },
+          {
+            "from": "gradient/output",
+            "fromFormat": 4,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "A normal ocean",
+      "thumbnail": "ocean_normal.png",
+      "description": "A normal ocean, with a normal wave. Nothing special, just a normal ocean.",
+      "settings": {
+        "name": "Ocean normal",
+        "position": {
+          "x": 855.1689267620014,
+          "y": 148.72407176973215
+        },
+        "lastSaved": "Tue Aug 19 2025 10:53:05 GMT+0200 (Central European Summer Time)",
+        "zoom": 0.6434010488108066,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": 322.9749728051346,
+              "y": -284.10568374836697
+            },
+            "properties": {
+              "eulerRotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "resolution": 256,
+              "time": 0.3233,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 2,
+              "large": false,
+              "fog": 0.5,
+              "playing": true
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": 346.04705331271197,
+              "y": 165.89431625163328
+            },
+            "properties": {
+              "filename": "ocean_normal",
+              "resolution": {
+                "x": 256,
+                "y": 256,
+                "z": 256
+              },
+              "layout": "auto"
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "817a2a3e-b0d9-4563-8966-a665a9fb4040",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1288.3158239959614,
+              "y": -350.0827680313655
+            },
+            "properties": {
+              "size": [
+                0.5,
+                0.5,
+                0.2
+              ],
+              "octaves": 2,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 1234,
+              "min": 0,
+              "max": 1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "8b64bc31-91fa-4d39-982a-bde9678a1cc5",
+            "type": "Normal",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -68.59936007459275,
+              "y": -79.42635721857545
+            },
+            "properties": {
+              "scale": 1,
+              "remap": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "e31653b8-c011-4220-b326-e760fda2edc5",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1291.69147732973,
+              "y": 333.16116916271363
+            },
+            "properties": {
+              "size": [
+                0.1,
+                0.1,
+                0.2
+              ],
+              "octaves": 4,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 50826,
+              "min": 0,
+              "max": 0.29
+            },
+            "evaluated": true
+          },
+          {
+            "id": "7025001c-57da-4d4f-9e63-530c0674d157",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -417.4428803675222,
+              "y": -83.02793843586275
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "97830982-732d-452b-a81c-9dd9fc671110",
+            "type": "Transform",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -818.3341111332766,
+              "y": -425.8946099127902
+            },
+            "properties": {
+              "position": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "scale": [
+                1,
+                1,
+                1,
+                0
+              ],
+              "input": 0,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "5419f3e2-f23f-44fc-a405-17a270adf4cc",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -2022.1768934037068,
+              "y": -337.98771142266827
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "3a194572-b58e-4ed5-8627-6ac091aa7fad",
+            "type": "Combine",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1243.326043333351,
+              "y": -660.6501352650762
+            },
+            "properties": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "b649a46d-0983-47e1-9dca-d798832b9a5d",
+            "type": "Transform",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -835.2747233574142,
+              "y": 207.50472249387352
+            },
+            "properties": {
+              "position": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "scale": [
+                1,
+                1,
+                1,
+                0
+              ],
+              "input": 0,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "5188a84f-3918-4bda-ab69-2562af3f8a26",
+            "type": "Combine",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1239.6650505020966,
+              "y": 18.810315276213093
+            },
+            "properties": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 1
+            },
+            "evaluated": true
+          },
+          {
+            "id": "34364edd-ba79-4acf-98ad-492b8573e60b",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1563.8413448978615,
+              "y": 5.443451169506998
+            },
+            "properties": {
+              "operation": 2,
+              "a": 0.5,
+              "b": 2
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "8b64bc31-91fa-4d39-982a-bde9678a1cc5/output",
+            "fromFormat": 3,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "7025001c-57da-4d4f-9e63-530c0674d157/output",
+            "fromFormat": 1,
+            "to": "8b64bc31-91fa-4d39-982a-bde9678a1cc5/bump",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "817a2a3e-b0d9-4563-8966-a665a9fb4040/output",
+            "fromFormat": 1,
+            "to": "97830982-732d-452b-a81c-9dd9fc671110/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "97830982-732d-452b-a81c-9dd9fc671110/output",
+            "fromFormat": 1,
+            "to": "7025001c-57da-4d4f-9e63-530c0674d157/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "5419f3e2-f23f-44fc-a405-17a270adf4cc/u",
+            "fromFormat": 1,
+            "to": "3a194572-b58e-4ed5-8627-6ac091aa7fad/b",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "3a194572-b58e-4ed5-8627-6ac091aa7fad/rgb",
+            "fromFormat": 3,
+            "to": "97830982-732d-452b-a81c-9dd9fc671110/position",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "b649a46d-0983-47e1-9dca-d798832b9a5d/output",
+            "fromFormat": 1,
+            "to": "7025001c-57da-4d4f-9e63-530c0674d157/inputB",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "5188a84f-3918-4bda-ab69-2562af3f8a26/rgb",
+            "fromFormat": 3,
+            "to": "b649a46d-0983-47e1-9dca-d798832b9a5d/position",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "5419f3e2-f23f-44fc-a405-17a270adf4cc/u",
+            "fromFormat": 1,
+            "to": "34364edd-ba79-4acf-98ad-492b8573e60b/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "34364edd-ba79-4acf-98ad-492b8573e60b/output",
+            "fromFormat": 1,
+            "to": "5188a84f-3918-4bda-ab69-2562af3f8a26/b",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "8b64bc31-91fa-4d39-982a-bde9678a1cc5/output",
+            "fromFormat": 3,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "e31653b8-c011-4220-b326-e760fda2edc5/output",
+            "fromFormat": 1,
+            "to": "b649a46d-0983-47e1-9dca-d798832b9a5d/input",
+            "toFormat": 1,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rainy day",
+      "thumbnail": "rain_drops.png",
+      "description": "Drops of water dripping on a window.",
+      "settings": {
+        "name": "Rain drops",
+        "position": {
+          "x": 1301.9421246479292,
+          "y": 399.71316807401126
+        },
+        "lastSaved": 0,
+        "zoom": 0.5722192754040557,
+        "nodes": [
+          {
+            "id": "viewer",
+            "type": "Viewer",
+            "position": {
+              "x": -55.530048458733226,
+              "y": -743.797351763518
+            },
+            "properties": {
+              "eulerRotation": [
+                2.4250000000000087,
+                0.43999999999999956,
+                0,
+                0
+              ],
+              "resolution": 128,
+              "time": 0.6456,
+              "raymarchingSamples": 48,
+              "bilinearSampling": true,
+              "mode": 2,
+              "large": true,
+              "fog": 0.5,
+              "playing": true
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "output",
+            "type": "Output",
+            "position": {
+              "x": -155.41889109381808,
+              "y": -164.31102055272297
+            },
+            "properties": {
+              "filename": "Rain_drops",
+              "resolution": {
+                "x": 256,
+                "y": 256,
+                "z": 256
+              },
+              "layout": "auto"
+            },
+            "evaluated": true,
+            "selected": false
+          },
+          {
+            "id": "d45c59b6-d6d7-4632-8eec-50086b93bb71",
+            "type": "Rectangle",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -2122.182391532364,
+              "y": -269.65440512927006
+            },
+            "properties": {
+              "size": [
+                0.23,
+                0.68,
+                0.37,
+                0
+              ],
+              "feather": 0
+            },
+            "evaluated": true
+          },
+          {
+            "id": "1250d085-c240-4d32-a73a-56969494b6a7",
+            "type": "Transform",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1376.325702229308,
+              "y": -121.40001203247294
+            },
+            "properties": {
+              "position": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                -15,
+                0,
+                0,
+                0
+              ],
+              "scale": [
+                1,
+                1,
+                -1,
+                0
+              ],
+              "input": 0,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "9f7186ab-38da-4029-a35a-64d83f09ff85",
+            "type": "Scatterer",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -962.2919587805113,
+              "y": -141.23462164054936
+            },
+            "properties": {
+              "size": [
+                0.01,
+                1,
+                1,
+                0
+              ],
+              "positionJitter": [
+                1,
+                1,
+                1,
+                0
+              ],
+              "sizeJitter": [
+                1,
+                1,
+                0,
+                0
+              ],
+              "rotationJitter": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "amount": 60,
+              "value": 1,
+              "seed": 1326
+            },
+            "evaluated": true
+          },
+          {
+            "id": "10ea3689-85b8-48b1-910d-61a4f95ff0f7",
+            "type": "Distort",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -538.649177302052,
+              "y": -367.4681393968702
+            },
+            "properties": {
+              "input": 0.5,
+              "bilinearSampling": true
+            },
+            "evaluated": true
+          },
+          {
+            "id": "ed245c94-c4e1-469c-90ca-5cdd48c41ee1",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1249.6981239482434,
+              "y": -802.3074236522643
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "77be7949-73c9-4ad9-aa12-ece0e2126e5b",
+            "type": "PerlinNoise",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1297.886576259214,
+              "y": -546.6561916720452
+            },
+            "properties": {
+              "size": [
+                0.5,
+                0.3,
+                0.5
+              ],
+              "octaves": 3,
+              "lacunarity": 2,
+              "seamless": true,
+              "seed": 75098,
+              "min": -0.05,
+              "max": 0.05
+            },
+            "evaluated": true
+          },
+          {
+            "id": "0fcc220e-22e8-4037-91ba-5957130280c3",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -909.8661185388395,
+              "y": -680.7661805571586
+            },
+            "properties": {
+              "operation": 0,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "fe7f2750-7777-460e-8bce-017f6c335786",
+            "type": "Uvw",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -2432.2896982796838,
+              "y": -50.24935102992636
+            },
+            "properties": {},
+            "evaluated": true
+          },
+          {
+            "id": "8bafccbc-067f-4fb9-bb02-9cce10ded967",
+            "type": "Math",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -1752.83893819262,
+              "y": -129.30239425963353
+            },
+            "properties": {
+              "operation": 2,
+              "a": 0.5,
+              "b": 0.5
+            },
+            "evaluated": true
+          },
+          {
+            "id": "0076d6cf-bdc4-459a-8487-7118374e8da0",
+            "type": "Smoothstep",
+            "visible": true,
+            "selected": false,
+            "position": {
+              "x": -2101.2935259299793,
+              "y": -42.947089817514886
+            },
+            "properties": {
+              "edge1": 0.28,
+              "edge2": 0.91,
+              "input": 0.5
+            },
+            "evaluated": true
+          }
+        ],
+        "edges": [
+          {
+            "from": "9f7186ab-38da-4029-a35a-64d83f09ff85/output",
+            "fromFormat": 4,
+            "to": "10ea3689-85b8-48b1-910d-61a4f95ff0f7/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "ed245c94-c4e1-469c-90ca-5cdd48c41ee1/uvw",
+            "fromFormat": 3,
+            "to": "0fcc220e-22e8-4037-91ba-5957130280c3/inputA",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "0fcc220e-22e8-4037-91ba-5957130280c3/output",
+            "fromFormat": 3,
+            "to": "10ea3689-85b8-48b1-910d-61a4f95ff0f7/uvw",
+            "toFormat": 3,
+            "visible": true
+          },
+          {
+            "from": "10ea3689-85b8-48b1-910d-61a4f95ff0f7/output",
+            "fromFormat": 4,
+            "to": "output/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "d45c59b6-d6d7-4632-8eec-50086b93bb71/output",
+            "fromFormat": 1,
+            "to": "8bafccbc-067f-4fb9-bb02-9cce10ded967/inputA",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "fe7f2750-7777-460e-8bce-017f6c335786/w",
+            "fromFormat": 1,
+            "to": "0076d6cf-bdc4-459a-8487-7118374e8da0/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "0076d6cf-bdc4-459a-8487-7118374e8da0/output",
+            "fromFormat": 1,
+            "to": "8bafccbc-067f-4fb9-bb02-9cce10ded967/inputB",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "8bafccbc-067f-4fb9-bb02-9cce10ded967/output",
+            "fromFormat": 1,
+            "to": "1250d085-c240-4d32-a73a-56969494b6a7/input",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "10ea3689-85b8-48b1-910d-61a4f95ff0f7/output",
+            "fromFormat": 4,
+            "to": "viewer/input",
+            "toFormat": 4,
+            "visible": true
+          },
+          {
+            "from": "77be7949-73c9-4ad9-aa12-ece0e2126e5b/output",
+            "fromFormat": 1,
+            "to": "0fcc220e-22e8-4037-91ba-5957130280c3/inputB",
+            "toFormat": 1,
+            "visible": true
+          },
+          {
+            "from": "1250d085-c240-4d32-a73a-56969494b6a7/output",
+            "fromFormat": 1,
+            "to": "9f7186ab-38da-4029-a35a-64d83f09ff85/mask",
+            "toFormat": 1,
+            "visible": true
+          }
+        ]
+      }
+    }
+  ]
+}
