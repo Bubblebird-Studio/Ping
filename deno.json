@@ -10,6 +10,7 @@
     "bootstrap": "npm:bootstrap@^5.3.7",
     "bootstrap-icons": "npm:bootstrap-icons@^1.13.1",
     "sass": "npm:sass@^1.89.2",
+    "upng-js": "npm:upng-js@^2.1.0",
     "vite": "npm:vite@^7.0.4",
     "vue": "npm:vue@^3.5.17"
   },

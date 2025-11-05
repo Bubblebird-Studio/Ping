@@ -16,6 +16,7 @@
     "npm:bootstrap-icons@^1.13.1": "1.13.1",
     "npm:bootstrap@^5.3.7": "5.3.7_@popperjs+core@2.11.8",
     "npm:sass@^1.89.2": "1.89.2",
+    "npm:upng-js@^2.1.0": "2.1.0",
     "npm:vite@^7.0.4": "7.0.4_sass@1.89.2_picomatch@4.0.2",
     "npm:vue@^3.5.17": "3.5.17"
   },
@@ -622,6 +623,9 @@
     "node-addon-api@7.1.1": {
       "integrity": "sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ=="
     },
+    "pako@1.0.11": {
+      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
+    },
     "picocolors@1.1.1": {
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
     },
@@ -698,6 +702,12 @@
       "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
       "dependencies": [
         "is-number"
+      ]
+    },
+    "upng-js@2.1.0": {
+      "integrity": "sha512-d3xzZzpMP64YkjP5pr8gNyvBt7dLk/uGI67EctzDuVp4lCZyVMo0aJO6l/VDlgbInJYDY6cnClLoBp29eKWI6g==",
+      "dependencies": [
+        "pako"
       ]
     },
     "vite@7.0.4_sass@1.89.2_picomatch@4.0.2": {
@@ -782,6 +792,7 @@
       "npm:bootstrap-icons@^1.13.1",
       "npm:bootstrap@^5.3.7",
       "npm:sass@^1.89.2",
+      "npm:upng-js@^2.1.0",
       "npm:vite@^7.0.4",
       "npm:vue@^3.5.17"
     ]

@@ -66,6 +66,13 @@
       </span>
     </div>
     <div class="input-group input-group-sm mb-1">
+      <label class="input-group-text" for="bitDepth">Bit depth</label>
+      <select class="form-select" id="bitDepth" v-model.number="properties.bitDepth" disabled>
+        <option :value="8">8 bit per channel</option>
+        <option :value="16">16 bit per channel</option>
+      </select>
+    </div>
+    <div class="input-group input-group-sm mb-1">
       {{ properties.resolution.x * tiles.x }} x {{ properties.resolution.y * tiles.y }} pixels<span class="px-2" v-if="tiles.x * tiles.y > 1">({{ tiles.x }} x {{ tiles.y }} tiles)</span>
     </div>
     <div class="btn-group input-group-sm mb-1" role="group">
@@ -93,6 +100,7 @@ const defaultProperties = {
   resolution: { x: 1024, y: 1024, z: 1 },
   layout: "auto",
   alphaMode: 2, // 0: none, 1: premultiplied, 2: straight
+  bitDepth: 8, // 8, 16
 };
 const bindings = [
   { id: "input", index: 0, format: 4, output: false },

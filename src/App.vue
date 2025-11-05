@@ -114,6 +114,7 @@ import SaveMenu from "./components/SaveMenu.vue";
 import LoadMenu from "./components/LoadMenu.vue";
 import TemplateMenu from "./components/TemplateMenu.vue";
 import HelpMenu from "./components/HelpMenu.vue";
+import UPNG from "upng-js";
 
 
 interface Globals {
@@ -546,9 +547,9 @@ function resetView() {
 }
 
 
-async function createCanvasFromWebGPUBuffer(gpuBuffer, width, height) {
+async function createBlobFromBuffer(gpuBuffer: GPUBuffer, width: Number, height: Number, bitDepth: Number) {
   // Read GPU buffer into CPU memory
-  const size = width * height * 4 * 4; // + BINDING_INFO_BUFFER_SIZE * 16;
+  const size = width * height * 4 * 4;
   const readBuffer = device.createBuffer({ size, usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ });
   const encoder = device.createCommandEncoder();
   encoder.copyBufferToBuffer(gpuBuffer, BINDING_INFO_BUFFER_SIZE * 16, readBuffer, 0, size);
@@ -557,33 +558,33 @@ async function createCanvasFromWebGPUBuffer(gpuBuffer, width, height) {
   await readBuffer.mapAsync(GPUMapMode.READ);
   const arrayBuffer = readBuffer.getMappedRange();
   const floatData = new Float32Array(arrayBuffer);
+  let png = null;
 
+  if (bitDepth == 8) {
   // Convert float32 (0–1) to 8-bit RGBA
-  const u8 = new Uint8ClampedArray(width * height * 4);
-  for (let i = 0; i < floatData.length; i++) {
-    u8[i] = Math.min(255, Math.max(0, floatData[i] * 255));
+    const u8 = new Uint8Array(width * height * 4);
+    for (let i = 0; i < floatData.length; i++) {
+      u8[i] = Math.round(Math.min(1.0, Math.max(0.0, floatData[i])) * 255);
+    }
+    png = UPNG.encode([u8.buffer], width, height, 0); // lossless RGBA8
+  } else if (bitDepth == 16) {
+    // Convert float32 (0–1) to float16
+    const u16 = new Uint16Array(width * height * 4);
+    for (let i = 0; i < floatData.length; i++) {
+      u16[i] = Math.round(Math.min(1.0, Math.max(0.0, floatData[i])) * 65535);
+    }
+    png = UPNG.encodeLL([u16.buffer], width, height, 3, 1, 16); // lossless RGBA16
+    // Unfortunately UPNG.js doesn't support include encodeLL. 
+    // I would have to make my own fork at some point...
   }
 
-  // Draw to canvas
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext("2d");
-  if (!context) throw new Error("Can't get the exporter 2d context");
-  const imageData = new ImageData(u8, width, height);
-
-  // WebGPU coordinate system is flipped vertically vs. HTML canvas
-  context.putImageData(imageData, 0, 0);
-  //context.scale(1, -1);
-  //context.drawImage(canvas, 0, -height);
-  context.drawImage(canvas, 0, 0, width, height);
+  const blob = new Blob([png], { type: "image/png" });
   readBuffer.unmap();
-
-  return canvas;
+  return blob;
 }
 
 
-async function exportImage(nodeId: String) {
+async function exportImage(nodeId: String, bitDepth: Number) {
   try {
     const endpoint = settings.nodes.find(node => node.id === nodeId);
     const nodeTree = buildTree(endpoint, null, 0, []);
@@ -593,11 +594,10 @@ async function exportImage(nodeId: String) {
     const tiles = getTiles(nodeTree.properties.resolution, nodeTree.properties.layout);
     const width = nodeTree.properties.resolution.x * tiles.x;
     const height = nodeTree.properties.resolution.y * tiles.y;
-    const canvas = await createCanvasFromWebGPUBuffer(nodeTree.bindings[1].buffer, width, height);
-    const pngURL = canvas.toDataURL("image/png");
+    const blob = await createBlobFromBuffer(nodeTree.bindings[1].buffer, width, height, nodeTree.properties.bitDepth);
     const link = document.createElement("a");
     link.download = nodeTree.properties.filename || "export.png";
-    link.href = pngURL;
+    link.href = URL.createObjectURL(blob);
     link.click();
   } catch (e) {
     console.error(e);
@@ -606,7 +606,7 @@ async function exportImage(nodeId: String) {
 }
 
 
-async function copyToClipboard(nodeId: String) {
+async function copyToClipboard(nodeId: String, bitDepth: Number) {
   try {
     const endpoint = settings.nodes.find(node => node.id === nodeId);
     const nodeTree = buildTree(endpoint, null, 0, []);
@@ -616,8 +616,7 @@ async function copyToClipboard(nodeId: String) {
     const tiles = getTiles(nodeTree.properties.resolution, nodeTree.properties.layout);
     const width = nodeTree.properties.resolution.x * tiles.x;
     const height = nodeTree.properties.resolution.y * tiles.y;
-    const canvas = await createCanvasFromWebGPUBuffer(nodeTree.bindings[1].buffer, width, height);
-    const blob = await new Promise(resolve => canvas.toBlob(resolve));
+    const blob = await createBlobFromBuffer(nodeTree.bindings[1].buffer, width, height, nodeTree.properties.bitDepth);
     const item = new ClipboardItem({ 'image/png': blob as Blob });
     await navigator.clipboard.write([item]);
     alert("Image copied to clipboard!");
