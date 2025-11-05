@@ -114,7 +114,7 @@ import SaveMenu from "./components/SaveMenu.vue";
 import LoadMenu from "./components/LoadMenu.vue";
 import TemplateMenu from "./components/TemplateMenu.vue";
 import HelpMenu from "./components/HelpMenu.vue";
-import UPNG from "upng-js";
+import UPNG from "./UPNG.js";
 
 
 interface Globals {
@@ -573,9 +573,9 @@ async function createBlobFromBuffer(gpuBuffer: GPUBuffer, width: Number, height:
     for (let i = 0; i < floatData.length; i++) {
       u16[i] = Math.round(Math.min(1.0, Math.max(0.0, floatData[i])) * 65535);
     }
-    png = UPNG.encodeLL([u16.buffer], width, height, 3, 1, 16); // lossless RGBA16
-    // Unfortunately UPNG.js doesn't support include encodeLL. 
-    // I would have to make my own fork at some point...
+    // PNG stores data in big-endian, so we need to swap the endianness
+    const u16s = swapEndian16(u16);
+    png = UPNG.encodeLL([u16s.buffer], width, height, 3, 1, 16); // lossless RGBA16
   }
 
   const blob = new Blob([png], { type: "image/png" });
@@ -583,6 +583,17 @@ async function createBlobFromBuffer(gpuBuffer: GPUBuffer, width: Number, height:
   return blob;
 }
 
+
+function swapEndian16(array) {
+  const buffer = array.buffer;
+  const bytes = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.length; i += 2) {
+    const tmp = bytes[i];
+    bytes[i] = bytes[i + 1];
+    bytes[i + 1] = tmp;
+  }
+  return array;
+}
 
 async function exportImage(nodeId: String, bitDepth: Number) {
   try {

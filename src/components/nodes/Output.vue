@@ -67,10 +67,13 @@
     </div>
     <div class="input-group input-group-sm mb-1">
       <label class="input-group-text" for="bitDepth">Bit depth</label>
-      <select class="form-select" id="bitDepth" v-model.number="properties.bitDepth" disabled>
-        <option :value="8">8 bit per channel</option>
-        <option :value="16">16 bit per channel</option>
+      <select class="form-select" id="bitDepth" v-model.number="properties.bitDepth">
+        <option :value="8">8 bit</option>
+        <option :value="16">16 bit (experimental)</option>
       </select>
+      <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Specifies the bit depth resolution per channel.">
+        <i class="bi bi-question"></i>
+      </span>
     </div>
     <div class="input-group input-group-sm mb-1">
       {{ properties.resolution.x * tiles.x }} x {{ properties.resolution.y * tiles.y }} pixels<span class="px-2" v-if="tiles.x * tiles.y > 1">({{ tiles.x }} x {{ tiles.y }} tiles)</span>

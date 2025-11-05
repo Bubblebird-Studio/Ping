@@ -15,6 +15,7 @@
     "npm:@vitejs/plugin-vue@6": "6.0.0_vite@7.0.4__sass@1.89.2__picomatch@4.0.2_vue@3.5.17_sass@1.89.2",
     "npm:bootstrap-icons@^1.13.1": "1.13.1",
     "npm:bootstrap@^5.3.7": "5.3.7_@popperjs+core@2.11.8",
+    "npm:pako@^2.1.0": "2.1.0",
     "npm:sass@^1.89.2": "1.89.2",
     "npm:upng-js@^2.1.0": "2.1.0",
     "npm:vite@^7.0.4": "7.0.4_sass@1.89.2_picomatch@4.0.2",
@@ -626,6 +627,9 @@
     "pako@1.0.11": {
       "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
     },
+    "pako@2.1.0": {
+      "integrity": "sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug=="
+    },
     "picocolors@1.1.1": {
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
     },
@@ -707,7 +711,7 @@
     "upng-js@2.1.0": {
       "integrity": "sha512-d3xzZzpMP64YkjP5pr8gNyvBt7dLk/uGI67EctzDuVp4lCZyVMo0aJO6l/VDlgbInJYDY6cnClLoBp29eKWI6g==",
       "dependencies": [
-        "pako"
+        "pako@1.0.11"
       ]
     },
     "vite@7.0.4_sass@1.89.2_picomatch@4.0.2": {
@@ -791,6 +795,7 @@
       "npm:@vitejs/plugin-vue@6",
       "npm:bootstrap-icons@^1.13.1",
       "npm:bootstrap@^5.3.7",
+      "npm:pako@^2.1.0",
       "npm:sass@^1.89.2",
       "npm:upng-js@^2.1.0",
       "npm:vite@^7.0.4",
