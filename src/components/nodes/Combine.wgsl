@@ -30,14 +30,14 @@ fn main(@builtin(global_invocation_id) coord: uint3) {
   let index = get_index(coord, resolution);
 
   buffer_output_rgba[index * 4 + 0] = select(properties.r, buffer_input_r[index * info_input_r.stride + 0], info_input_r.connected);
-  buffer_output_rgba[index * 4 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 1], info_input_g.connected);
-  buffer_output_rgba[index * 4 + 2] = select(properties.b, buffer_input_b[index * info_input_b.stride + 2], info_input_b.connected);
-  buffer_output_rgba[index * 4 + 3] = select(properties.a, buffer_input_a[index * info_input_a.stride + 3], info_input_a.connected);
+  buffer_output_rgba[index * 4 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 0], info_input_g.connected);
+  buffer_output_rgba[index * 4 + 2] = select(properties.b, buffer_input_b[index * info_input_b.stride + 0], info_input_b.connected);
+  buffer_output_rgba[index * 4 + 3] = select(properties.a, buffer_input_a[index * info_input_a.stride + 0], info_input_a.connected);
 
   buffer_output_rgb[index * 3 + 0] = select(properties.r, buffer_input_r[index * info_input_r.stride + 0], info_input_r.connected);
-  buffer_output_rgb[index * 3 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 1], info_input_g.connected);
-  buffer_output_rgb[index * 3 + 2] = select(properties.b, buffer_input_b[index * info_input_b.stride + 2], info_input_b.connected);
+  buffer_output_rgb[index * 3 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 0], info_input_g.connected);
+  buffer_output_rgb[index * 3 + 2] = select(properties.b, buffer_input_b[index * info_input_b.stride + 0], info_input_b.connected);
 
   buffer_output_rg[index * 2 + 0] = select(properties.r, buffer_input_r[index * info_input_r.stride + 0], info_input_r.connected);
-  buffer_output_rg[index * 2 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 1], info_input_g.connected);
+  buffer_output_rg[index * 2 + 1] = select(properties.g, buffer_input_g[index * info_input_g.stride + 0], info_input_g.connected);
 }
