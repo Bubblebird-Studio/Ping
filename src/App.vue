@@ -94,6 +94,12 @@
       <p>{{ error }}</p>
       <p>Open an issue on <a href="https://github.com/Bubblebird-Studio/Ping/issues" target="_blank">Github</a> to let us know what went wrong.</p>
     </div>
+    <div v-if="warning != ''" class="fixed-bottom alert alert-warning m-5" role="warning">
+      <p>{{ warning }}</p>
+      <button type="button" class="list-group-item list-group-item-action" @click="warning = ''">
+        Close <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
   </div>
   <AddMenu v-if="displayAddMenu" :nodes="Nodes" :position="cursor.position" @addNode="addNode" @close="displayAddMenu = false"/>
   <SaveMenu v-if="displaySaveMenu" :collectionName="collectionName" :settings="settings" @save="saveSettings" @close="displaySaveMenu = false"/>
@@ -147,6 +153,7 @@ let lastRenderTimestamp = 0;
 let nodeTrees: NodeTreeItem[] = [];
 
 const error = ref("");
+const warning = ref("");
 const nodeSearch = ref("");
 const dirty = ref(false);
 const displayAddMenu = ref(false);
@@ -186,14 +193,18 @@ onMounted(async () => {
   }
   try {
     const adapter = await navigator.gpu.requestAdapter();
-    device = await adapter.requestDevice({
-      requiredLimits: {
-        maxBufferSize: 2147483644,
-        maxStorageBufferBindingSize: 2147483644,
-        maxTextureDimension2D: 16384,
-        maxComputeInvocationsPerWorkgroup: 1024
-      }
-    });
+    const requiredLimits = {
+      maxBufferSize: 2147483644,
+      maxStorageBufferBindingSize: 2147483644,
+      maxTextureDimension2D: 16384,
+      maxComputeInvocationsPerWorkgroup: 1024
+    };
+    if (adapter.limits.maxBufferSize < requiredLimits.maxBufferSize || adapter.limits.maxStorageBufferBindingSize < requiredLimits.maxStorageBufferBindingSize) {
+      requiredLimits.maxBufferSize = adapter.limits.maxBufferSize;
+      requiredLimits.maxStorageBufferBindingSize = adapter.limits.maxStorageBufferBindingSize;
+      warning.value = `Your browser doesn't meet the required buffer size limits. Higher image resolution output might not work.`;
+    }
+    device = await adapter.requestDevice({ requiredLimits });
     renderLoop();
   } catch(e) {
     error.value = `Your browser doesn't support WebGPU. Error: ${e.message}`;
