@@ -85,7 +85,7 @@
         <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Open the help window" @click="displayHelpMenu = true">
           <i class="bi bi-question-circle"></i>
         </button>
-        <a role="button" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Visit the GitHub page" href="https://github.com/Bubblebird-Studio/ProceduralTextureGenerator" target="_blank">
+        <a role="button" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Visit the GitHub page" href="https://github.com/Bubblebird-Studio/Ping" target="_blank">
           <i class="bi bi-github"></i>
         </a>
       </div>
