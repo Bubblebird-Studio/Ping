@@ -197,12 +197,20 @@ onMounted(async () => {
       maxBufferSize: 2147483644,
       maxStorageBufferBindingSize: 2147483644,
       maxTextureDimension2D: 16384,
-      maxComputeInvocationsPerWorkgroup: 1024
+      maxComputeInvocationsPerWorkgroup: 512
     };
     if (adapter.limits.maxBufferSize < requiredLimits.maxBufferSize || adapter.limits.maxStorageBufferBindingSize < requiredLimits.maxStorageBufferBindingSize) {
       requiredLimits.maxBufferSize = adapter.limits.maxBufferSize;
       requiredLimits.maxStorageBufferBindingSize = adapter.limits.maxStorageBufferBindingSize;
       warning.value = `Your browser doesn't meet the required buffer size limits. Higher image resolution output might not work.`;
+    }
+    if (adapter.limits.maxTextureDimension2D < requiredLimits.maxTextureDimension2D) {
+      requiredLimits.maxTextureDimension2D = adapter.limits.maxTextureDimension2D;
+      warning.value = `Your browser doesn't meet the required texture dimension limit. Higher image resolution output might not work.`;
+    }
+    if (adapter.limits.maxComputeInvocationsPerWorkgroup < requiredLimits.maxComputeInvocationsPerWorkgroup) {
+      requiredLimits.maxComputeInvocationsPerWorkgroup = adapter.limits.maxComputeInvocationsPerWorkgroup;
+      warning.value = `Your browser doesn't meet the required compute invocations per workgroup limit. Some nodes might not work as expected.`;
     }
     device = await adapter.requestDevice({ requiredLimits });
     renderLoop();
