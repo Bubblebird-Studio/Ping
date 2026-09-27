@@ -65,6 +65,7 @@
       <Slider v-model="properties.max" label="Max" />
     </div>
     <Slot :binding="bindings[6]">Output</Slot>
+    <Slot :binding="bindings[7]">Cell color</Slot>
   </div>
 </template>
 
@@ -93,6 +94,7 @@ const bindings = [
   { id: "weightFeature3", index: 4, format: 1, output: false },
   { id: "weightFeature4", index: 5, format: 1, output: false },
   { id: "output",         index: 6, format: 1, output: true },
+  { id: "cell_color",     index: 7, format: 4, output: true },
 ];
 const distanceTypes = ["Euclidean", "Squared", "Manhattan", "Chebyshev"];
 let pipeline;

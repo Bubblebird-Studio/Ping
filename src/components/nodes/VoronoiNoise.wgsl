@@ -5,6 +5,7 @@
 @group(0) @binding(4) var<storage, read> buffer_feature_weight3: array<float>;
 @group(0) @binding(5) var<storage, read> buffer_feature_weight4: array<float>;
 @group(0) @binding(6) var<storage, read_write> buffer_output: array<float>;
+@group(0) @binding(7) var<storage, read_write> buffer_cell_color: array<float>;
 @group(1) @binding(0) var<uniform> globals: Globals;
 @group(2) @binding(0) var<uniform> properties: Properties;
 
@@ -65,6 +66,7 @@ fn main(@builtin(global_invocation_id) coord: uint3) {
 
   let weights = float4(feature_weight1, feature_weight2, feature_weight3, feature_weight4);
   var min_distances = float4(999999.0, 999999.0, 999999.0, 999999.0);
+  var nearest_color = float4(0.0);
 
   for (var dx = -1; dx <= 1; dx++) {
     for (var dy = -1; dy <= 1; dy++) {
@@ -74,7 +76,9 @@ fn main(@builtin(global_invocation_id) coord: uint3) {
           neighbor_cell = (neighbor_cell + grid_resolution) % grid_resolution;
         }
 
-        let feature_point = (float3(neighbor_cell) + rand_vector01(hash_int3(neighbor_cell) + seed)) * cell_size;
+        let neighbor_cell_hash = hash_int3(neighbor_cell) + seed;
+        let neighbor_cell_offset = rand_vector01(neighbor_cell_hash);
+        let feature_point = (float3(neighbor_cell) + neighbor_cell_offset) * cell_size;
         var delta = feature_point - uvw;
         if (seamless) {
           delta = min(abs(delta), 1.0 - abs(delta)); // toroidal distance
@@ -93,6 +97,13 @@ fn main(@builtin(global_invocation_id) coord: uint3) {
         }
         if (distance_type == VORONOI_DISTANCE_TYPE_CHEBYSHEV) {
           dist = max(max(abs(delta.x), abs(delta.y)), abs(delta.z));
+        }
+
+        if (dist < min_distances.x) {
+          nearest_color.r = neighbor_cell_offset.r;
+          nearest_color.g = neighbor_cell_offset.g;
+          nearest_color.b = neighbor_cell_offset.b;
+          nearest_color.a = rand01(hash_float3(feature_point));
         }
 
         // insert sorted
@@ -118,4 +129,8 @@ fn main(@builtin(global_invocation_id) coord: uint3) {
   let noise = dot(min_distances, weights);
   
   buffer_output[index] = remap(noise, 0.0, 1.0, properties.min, properties.max);
+  buffer_cell_color[index * 4 + 0] = nearest_color.r;
+  buffer_cell_color[index * 4 + 1] = nearest_color.g;
+  buffer_cell_color[index * 4 + 2] = nearest_color.b;
+  buffer_cell_color[index * 4 + 3] = nearest_color.a;
 }
